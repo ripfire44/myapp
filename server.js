@@ -5,8 +5,11 @@ const path = require('path');
 
 // Create app server
 const app = express();
+app.use(morgan('dev'));
+app.use(bodyParser.json());
 // Setup api
-const api = require('./dist/api/api');
+const Api = require('./dist/api').Api;
+const api = new Api();
 app.use('/api', api);
 // Setup static files
 const publicDir = path.join(__dirname, 'dist/web');
@@ -15,7 +18,7 @@ app.use(express.static(publicDir));
 app.all('/*', (req,res)=>{
     res.sendFile(`${publicDir}/index.html`);
 });
-
-app.listen(process.env.PORT, ()=>{
-    console.log(`Server listening at http://localhost:${process.env.PORT}`)
+let port = process.env.PORT;
+app.listen(port, ()=>{
+    console.log(`Server listening at http://localhost:${port}`)
 });

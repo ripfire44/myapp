@@ -1,16 +1,22 @@
 {
     "compilerOptions": {
-        "target": "ES5",
-        "module": "commonjs",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "lib": [
-            "es6",
+            "es2016",
             "dom"
-        ]
+        ],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "sourceMap": true,
+        "target": "es2015"
     },
+    "exclude": [
+        "node_modules"
+    ],
     "awesomeTypescriptLoaderOptions": {
         "forkChecker": true,
         "useWebpackText": true

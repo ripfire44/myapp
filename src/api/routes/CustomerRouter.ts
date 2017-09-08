@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { Customer } from '../model/Customer';
+import { Customer } from '../model';
 
 class CustomerRouter {
     public router: express.Router;
@@ -17,4 +17,6 @@ class CustomerRouter {
         });
     }
 }
-export default new CustomerRouter().router;
+
+let customerRouter = new CustomerRouter().router;
+export { customerRouter };

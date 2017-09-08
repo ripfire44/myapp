@@ -7,18 +7,26 @@ const apiConfig = require('./src/api/webpack.config');
 
 var apiServer;
 
-webpack(apiConfig).watch({}, (err, stats) => {
+webpack(apiConfig).watch({
+    ignored: /node_modules/
+}, (err, stats) => {
     if (apiServer) { apiServer.close(); }
 
     // delete api from modules cache
-    delete require.cache[require.resolve('./dist/api/api')];
-    const api = require('./dist/api/api');
-    api.use(morgan('dev'));
-    api.use(bodyParser.json());
-    api.use(bodyParser.urlencoded({ extended: false }));
+    delete require.cache[require.resolve('./dist/api')];
+    let app = express();
 
-    apiServer = api.listen(8081, () => {
-        console.log('Server listening on http://localhost:8081/');
+    
+    app.use(morgan('dev'));
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: false }));
+    let Api = require('./dist/api').Api;
+    let api = new Api();
+    app.use('/api', api.app);
+
+    let port = process.env.PORT;
+    apiServer = app.listen(port, () => {
+        console.log(`Server listening on http://localhost:${port}/`);
     });
 });
 
