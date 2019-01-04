@@ -22,12 +22,12 @@
     "npm-run-all": "^4.0.2",
     "typescript": "^2.4.2",
     "webpack": "^3.4.1",
-    "webpack-dev-server": "^2.6.1"
+    "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.4",
-    "morgan": "^1.8.2"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1"
   },
   "config": {
     "outdir": "/dist",
